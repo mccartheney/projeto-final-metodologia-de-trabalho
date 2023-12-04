@@ -1,0 +1,31 @@
+modelo visualizacaoDespesas :
+    construtor (arrayDados) :
+        # variavel onde vai estar guardado tudo sobre as despesas
+        visualizacaoDespesas.db = arrayDados
+
+    # _____ funcao onde mostra todas as categorias de um tipo (credito / debito)
+    funcao mostrarTodasCategorias (tipoDeCategoria) :
+        se tipoDeCategoria == "e"  || tipoDeCategoria == "d":
+            categorias = []
+            se tipoDeCategoria == "e" : 
+                categorias = visualizacaoDespesas.db.categoriasEntradas
+            se tipoDeCategorias == "d" : 
+                categorias = visualizacaoDespesas.db.categoriasDespesas
+
+            imprime ("As categorias do tipo que escolheu")
+            cada categoria em categorias :
+                imprime ("___ {categoria} ___")
+            
+        imprime ("resposta invalida")
+
+    funcao verificarCategoria () :
+
+    funcao mostraValorDeUmTipoTotal () :
+    
+    funcao mostraValorDeUmTipoCategoria () :
+
+    funcao mostrarValorGlobal()
+    
+
+
+
