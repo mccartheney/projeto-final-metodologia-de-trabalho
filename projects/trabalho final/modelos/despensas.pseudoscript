@@ -1,0 +1,109 @@
+modelo despesaModelo :
+    construtor () :
+        despesaModelo.categoriasDespesas = [] # array onde sera armazenadas as categorias de despesas
+        despesaModelo.categoriasEntradas = [] # array onde sera armazenadas as categorias de entradas
+        despesaModelo.despesas = [] #array onde sera armazenadas todas as despesas
+        despesaModelo.entradas = [] #array onde sera armazenadas todas as entradas de dinheiro
+
+    # --------------------------------- area para despesas -----------------------
+
+    # _____ funcao para verificar se existe uma categoria de despesas
+    funcao verificarCategoriaDespesa (categoriaPorVerificar) :
+        categoriaExiste = false # variavel que vai saber se a categoria que vai ser fornacida pelo usuario existe 
+
+        # _____ loop atravez da array despesaModelo.categoriasDespesas para veificar se existe uma categoria igual a do que o usuario quer criar
+        cada categoria em despesaModelo.categoriasDespesas :
+            se categoria == categoriaPorVerificar : 
+                categoriaExiste = true # caso tenha retorne true
+        
+        retorna categoriaExiste
+
+
+    # _____ funcao para criar uma nova categoria de despesas _____ 
+    funcao criarCategoriaDespesas (nomeNovaCategoria) :
+        #ultimo lugar da categoria de despesas
+        ultimoLugarDaCategoriaDespesas = despesaModelo.categoriasDespesas.tamanho ()
+
+        # adicionar a nova categoria de despesa na categoria de despesa no ultimo lugar dela 
+        despesaModelo.categoriasDespesas[ultimoLugarDaCategoriaDespesas] = nomeNovaCategoria
+
+
+    #funcao para criar uma nova despesa com valor de montante, categoria e discrica (opcional)
+    funcao novaDespesa () :
+        #para criar nova despesa necessario -> montante, categoria e descricao (opcional)
+        imprime ("---------- carteira digital ----------")
+        imprime ("Qual sera o montante da sua despesa ??") # perguntar e receber o montante da despesa
+        entrada ("-> ", montante)
+
+        imprime ("Qual sera a categoria da sua despesa ??") # perguntar e receber a categoria da despesa
+        entrada ("-> ", categoria)        
+
+        categoriaExiste = verificarCategoriaDespesa (categoria) #variavel onde guarda o valor que identifica se a categoria existe
+        se categoriaExiste == false : #caso n exista
+            entrada ("a categoria {categoria} n existe deseja criar ela ?? [s/n]", opcaoCriarCat) # pergunta se quer criar
+
+            se opcaoCriarCat == "s" : # caso queira criar
+                despesaModelo.criarCategoriaDespesas (categoria) # criar categoria
+            
+            se opcaoCriarCat == "n" : # caso nao queira
+                imprime ("ok, vc sera redirecionado para a pagina inicial") # manda para a pagina inicial
+
+        imprime ("Qual sera a descricao da sua despesa ?? *opcional") # perguntar e receber a descricao da despesa
+        entrada ("-> ", descricao)        
+
+        ultimoLugarDasDespesas = despesaModelo.despesas.tamanho () #ultimo lugar da array despesas
+        #criar despesa
+        despesaModelo.despesas[ultimoLugarDaCategoriaDespesas] = (montante -> montante, categoria->categoria, descricao -> descricao)
+
+        #--------------------------------------------------------------------------------------------------
+        
+
+        # --------------------------------- area para entradas -----------------------
+
+        # _____ funcao para verificar se existe uma categoria de entradas _____
+        funcao verificarCategoriaEntrada (categoriaPorVerificar) :
+            categoriaExiste = false # variavel que vai saber se a categoria que vai ser fornacida pelo usuario existe 
+
+            # _____ loop atravez da array despesaModelo.categoriasEntradas para veificar se existe uma categoria igual a do que o usuario quer criar
+            cada categoria em despesaModelo.categoriasEntradas :
+                se categoria == categoriaPorVerificar : 
+                    categoriaExiste = true # caso tenha retorne true
+        
+            retorna categoriaExiste
+
+        # _____ funcao para criar uma nova categoria de entradas _____ 
+        funcao criarCategoriaEntradas (nomeNovaCategoria) :
+            #ultimo lugar da categoria de entradas
+            ultimoLugarDaCategoriaEntradas = despesaModelo.categoriasEntradas.tamanho ()
+
+            # adicionar a nova categoria de Entradas na categoria de Entradas no ultimo lugar dela 
+            despesaModelo.categoriasEntradas[ultimoLugarDaCategoriaEntradas] = nomeNovaCategoria
+
+        #funcao para criar uma nova Entrada com valor de montante, categoria e discrica (opcional)
+        funcao novaEntrada () :
+            #para criar nova despesa necessario -> montante, categoria e descricao (opcional)
+            imprime ("---------- carteira digital ----------")
+            imprime ("Qual sera o montante da sua Entrada ??") # perguntar e receber o montante da Entrada
+            entrada ("-> ", montante)
+
+            imprime ("Qual sera a categoria da sua Entrada ??") # perguntar e receber a categoria da Entrada
+            entrada ("-> ", categoria)        
+
+            categoriaExiste = verificarCategoriaEntrada (categoria) #variavel onde guarda o valor que identifica se a categoria existe
+            se categoriaExiste == false : #caso n exista
+                entrada ("a categoria {categoria} n existe deseja criar ela ?? [s/n]", opcaoCriarCat) # pergunta se quer criar
+
+                se opcaoCriarCat == "s" : # caso queira criar
+                    despesaModelo.criarCategoriaEntrada (categoria) # criar categoria
+                
+                se opcaoCriarCat == "n" : # caso nao queira
+                    imprime ("ok, vc sera redirecionado para a pagina inicial") # manda para a pagina inicial
+
+            imprime ("Qual sera a descricao da sua Entrada ?? *opcional") # perguntar e receber a descricao da despesa
+            entrada ("-> ", descricao)        
+
+            ultimoLugarDasEntradas = despesaModelo.entradas.tamanho () #ultimo lugar da array despesas
+            #criar despesa
+            despesaModelo.entradas[ultimoLugarDaCategoriaEntradas] = (montante -> montante, categoria->categoria, descricao -> descricao)
+
+        #--------------------------------------------------------------------------------------------------
